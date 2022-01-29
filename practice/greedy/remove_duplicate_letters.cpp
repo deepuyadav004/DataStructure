@@ -14,26 +14,28 @@ Input: s = "cbacdcbc"
 Output: "acdb"
 	
 	
-	 string removeDuplicateLetters(string s) {
+ string removeDuplicateLetters(string s) {
         
-        unordered_map<char, int>last;
-        vector<bool>vis(26,true);
-        
+        unordered_map<char, int>mp;
+        vector<bool>v(1000,false);
         for(int i=0; i<s.length(); i++){
-            last[s[i]]=i;
-            vis[i]=s[i]-'a';
-            
+            mp[s[i]]=i;
         }
         string ans="";
         for(int i=0; i<s.length(); i++){
             
-            while(!ans.empty() && ans.back()>s[i] && last[s[i]]>i){
-                ans+=s[i];
-                vis[s[i]-'a']=false;
+           if(v[s[i]-'a']){
+               continue;
+           }
+            
+            while(!ans.empty() and ans.back()>s[i] and mp[ans.back()]>i){
+                v[ans.back()-'a']=false;
+                ans.pop_back();
             }
             
             ans+=s[i];
-            vis[s[i]-'a']=false;
+            v[s[i]-'a']=true;
         }
-        return s;
+        return ans;
     }
+
