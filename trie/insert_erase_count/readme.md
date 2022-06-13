@@ -1,4 +1,4 @@
-#Problem Statement:
+# Problem Statement:
 Implement a data structure ”TRIE” from scratch. Complete some functions.
 
 1) Trie(): Initialize the object of this “TRIE” data structure.
